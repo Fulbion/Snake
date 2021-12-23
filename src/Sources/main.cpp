@@ -11,7 +11,7 @@ sf::Vector2f fpos(sf::Vector2f((rand() % (width / size)) * size, (rand() % (heig
 
 int score = 0;
 
-enum Direction
+enum class Direction
 {
     Stop,
     Left,
@@ -19,7 +19,7 @@ enum Direction
     Up,
     Right
 };
-int direction = Direction::Stop;
+auto direction = Direction::Stop;
 
 struct Snake { sf::Vector2f pos; } s[255];
 int length = 1;
@@ -45,12 +45,9 @@ void Move(sf::Sprite& snake)
 }
 
 
-bool Eat(sf::Sprite& snake, sf::Sprite& food)
+bool Eat(sf::Sprite& food)
 {
-    if (s[0].pos == food.getPosition())
-        return true;
-    else
-        return false;
+    return s[0].pos == food.getPosition();
 }
 
 void GameOver()
